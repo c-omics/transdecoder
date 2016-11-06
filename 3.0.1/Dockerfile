@@ -15,7 +15,9 @@ ENV GIT=https://github.com/TransDecoder/TransDecoder
 ENV DEST=/software/applications/$APP_NAME/
 ENV PATH=$DEST/$VERSION/:$DEST/$VERSION/util:$DEST/$VERSION/util/bin:$PATH
 
-RUN git clone $GIT ; \
+RUN yum install -y perl-App-cpanminus ; \
+    cpanm Data::Dumper ; \
+    git clone $GIT ; \
     cd $APP_NAME ; \
     git checkout tags/$VERSION ; \
     make ; \
