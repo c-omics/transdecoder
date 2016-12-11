@@ -17,6 +17,7 @@ ENV PATH=$DEST/$VERSION/:$DEST/$VERSION/util:$DEST/$VERSION/util/bin:$PATH
 
 RUN yum install -y perl-App-cpanminus ; \
     cpanm Data::Dumper ; \
+    cpanm DB_File ; \
     git clone $GIT ; \
     cd $APP_NAME ; \
     git checkout tags/$VERSION ; \
