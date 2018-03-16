@@ -16,11 +16,13 @@ ENV DEST=/software/applications/$APP_NAME/
 ENV PATH=$DEST/$VERSION/:$DEST/$VERSION/util:$DEST/$VERSION/util/bin:$PATH
 
 RUN yum install -y perl-App-cpanminus ; \
+    yum clean all ; \
     cpanm Data::Dumper ; \
     cpanm DB_File ; \
     git clone $GIT ; \
     cd $APP_NAME ; \
     git checkout tags/$VERSION ; \
+    rm -rf .git ; \
     make ; \
     mkdir -p /usr/share/licenses/$APP_NAME-$VERSION ; \
     cp LICENSE.txt /usr/share/licenses/$APP_NAME-$VERSION/ ; \
